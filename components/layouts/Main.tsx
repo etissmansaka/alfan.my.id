@@ -17,7 +17,7 @@ const Main = ({ children }) => {
         flex="1 1 auto"
         px={[4, null]}
         my={[6, 10]}
-        overflow="hidden"
+        wordBreak="break-word"
       >
         {children}
       </Box>
