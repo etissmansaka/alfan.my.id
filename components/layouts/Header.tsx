@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Box,
-  Flex,
   Heading,
   IconButton,
   List,
@@ -9,34 +8,23 @@ import {
   Tooltip,
   useColorMode,
 } from "@chakra-ui/core";
-import styled from "@emotion/styled";
 import config from "~/utils/config";
 import NextChakraLink from "../helpers/NextChakraLink";
 
-const navbarBg = {
-  light: "white",
-  dark: "gray.900",
-};
-
-const background = {
-  ligth: "white",
-  dark: "gray.900",
-};
-
-const color = {
-  light: "gray.900",
-  dark: "white",
-};
-
-const Nav = styled(Box)`
-  backdrop-filter: opacity(0.6) blur(20px);
-  transition: background-color 0.1 ease-in-out;
-`;
-
 const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const background = {
+    light: "white",
+    dark: "gray.900",
+  };
+
+  const color = {
+    light: "gray.900",
+    dark: "white",
+  };
+
   return (
-    <Nav
+    <Box
       as="header"
       display="flex"
       justifyContent="space-between"
@@ -46,23 +34,18 @@ const Header = () => {
       position="sticky"
       zIndex={10}
       top={0}
-      bg={navbarBg[colorMode]}
+      bg={background[colorMode]}
       w="100%"
       mx="auto"
     >
-      <NextChakraLink
-        href="/"
-        _hover={{
-          underline: "none",
-        }}
-      >
-        <Heading as="h2" display={["none", "flex"]} color={color[colorMode]}>
+      <NextChakraLink href="/" display={["none", "block"]}>
+        <Heading as="h1" size="lg" color={color[colorMode]}>
           {config.TITLE}
         </Heading>
       </NextChakraLink>
       <List display="flex" justifyContent="center" alignItems="center" mx={-2}>
         {config.MENU.map((menu) => (
-          <ListItem px={2}>
+          <ListItem px={2} key={menu.path}>
             <NextChakraLink
               href={menu.path}
               color={color[colorMode]}
@@ -78,7 +61,7 @@ const Header = () => {
       </List>
       <Tooltip
         aria-label="Change Color Mode"
-        label={colorMode === "dark" ? "Toggle Ligth Mode" : "Toggle Dark Mode"}
+        label={colorMode === "dark" ? "Toggle Light Mode" : "Toggle Dark Mode"}
         zIndex={12}
       >
         <IconButton
@@ -89,7 +72,7 @@ const Header = () => {
           onClick={toggleColorMode}
         />
       </Tooltip>
-    </Nav>
+    </Box>
   );
 };
 
