@@ -12,7 +12,13 @@ const Main = ({ children }) => {
       maxW={["100%", "100%", "900px"]}
     >
       <Header />
-      <Box as="main" flex="1 1 auto" px={[4, null]} my={[6, 10]}>
+      <Box
+        as="main"
+        flex="1 1 auto"
+        px={[4, null]}
+        my={[6, 10]}
+        overflow="hidden"
+      >
         {children}
       </Box>
       <Footer />

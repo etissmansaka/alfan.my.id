@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ThemeProvider } from "emotion-theming";
 import theme from "~/utils/theme";
 import {
@@ -21,8 +21,13 @@ const CustomApp = ({ Component, router, ...pageProps }) => {
       <MDXProvider components={MDXComponent}>
         <ColorModeProvider value="light">
           <Head>
+            <meta content="IE=edge" httpEquiv="X-UA-Compatible" />
+            <meta
+              content="width=device-width, initial-scale=1"
+              name="viewport"
+            />
             <link
-              href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,600;1,400;1,600;0,700&display=swap"
+              href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Fira+Mono&display=swap"
               rel="stylesheet"
             />
           </Head>

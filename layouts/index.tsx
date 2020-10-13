@@ -2,11 +2,19 @@ import React from "react";
 import Main from "~/components/layouts/Main";
 import { NextSeo } from "next-seo";
 import config from "~/utils/config";
-import { Box, Button, Flex, Heading, useColorMode } from "@chakra-ui/core";
+import {
+  Avatar,
+  Button,
+  Divider,
+  Flex,
+  Heading,
+  Text,
+  useColorMode,
+} from "@chakra-ui/core";
 
-const background = {
-  light: ["blue.400", "teal.300"],
-  dark: ["blue.800", "teal.700"],
+const color = {
+  light: "blue.600",
+  dark: "teal.300",
 };
 
 const MDXLayout = ({ children, frontMatter }) => {
@@ -18,29 +26,40 @@ const MDXLayout = ({ children, frontMatter }) => {
 
   return (
     <>
-      <NextSeo title={frontMatter.title} canonical={config.BASE_URL + slug} />
+      <NextSeo
+        title={frontMatter.title}
+        canonical={`${config.BASE_URL}/${slug}`}
+      />
       <Main>
-        <Flex direction="column" justifyContent="center" alignItems="center">
-          <Heading as="h1" size="xl" fontWeight={700}>
+        <Flex
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+          mb={10}
+        >
+          <Button variant="ghost" borderRadius={4} color={color[colorMode]}>
+            {frontMatter.category}
+          </Button>
+          <Heading
+            as="h1"
+            size="2xl"
+            fontWeight={700}
+            textAlign="center"
+            my={4}
+          >
             {frontMatter.title}
           </Heading>
-          <Heading as="h2" color="teal.500" size="md" mt={10} fontWeight={600}>
-            {frontMatter.description}
-          </Heading>
-          <Flex alignItems="center" my={10}>
-            <Button
-              variant="ghost"
-              borderRadius={4}
-              bg={background[colorMode][0]}
-              px={4}
-              py={2}
-            >
-              {frontMatter.category}
-            </Button>
-            <Box mx={4}>&bull;</Box>
-            <Box px={4} py={2} bg={background[colorMode][1]} borderRadius={4}>
-              {frontMatter.publishedAt}
-            </Box>
+          <Flex justifyContent="space-between" alignItems="center">
+            <Flex alignItems="center">
+              <Avatar
+                name={config.AUTHOR}
+                src="https://res.cloudinary.com/kopiijo/image/upload/v1595946176/PP_ep5wyo.jpg"
+                size="sm"
+              />
+              <Text as="p" ml={2} fontSize="sm">
+                {config.AUTHOR} at {frontMatter.publishedAt}
+              </Text>
+            </Flex>
           </Flex>
         </Flex>
         {children}

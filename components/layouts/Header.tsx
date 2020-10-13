@@ -10,21 +10,27 @@ import {
 } from "@chakra-ui/core";
 import config from "~/utils/config";
 import NextChakraLink from "../helpers/NextChakraLink";
+import styled from "@emotion/styled";
+
+const background = {
+  light: "rgba(255, 255, 255, 0.8)",
+  dark: "rgba(23, 25, 35, 0.8)",
+};
+
+const color = {
+  light: "gray.900",
+  dark: "white",
+};
+
+const Nav = styled(Box)`
+  backdrop-filter: blur(10px);
+`;
 
 const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
-  const background = {
-    light: "white",
-    dark: "gray.900",
-  };
-
-  const color = {
-    light: "gray.900",
-    dark: "white",
-  };
 
   return (
-    <Box
+    <Nav
       as="header"
       display="flex"
       justifyContent="space-between"
@@ -72,7 +78,7 @@ const Header = () => {
           onClick={toggleColorMode}
         />
       </Tooltip>
-    </Box>
+    </Nav>
   );
 };
 
