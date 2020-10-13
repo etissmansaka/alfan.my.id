@@ -12,4 +12,6 @@ module.exports = withMdx({
     phase: "prebuild|loader|both",
   },
   reExportDataFetching: false,
-})();
+})({
+  pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
+});
