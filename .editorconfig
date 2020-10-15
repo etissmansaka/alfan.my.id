@@ -1,2 +1,2 @@
-[{*.tsx,*.ts,*.js,*.jsx}]
+[{*.tsx,*.ts,*.js,*.jsx,*.mdx}]
 indent_size = 2

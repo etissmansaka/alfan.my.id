@@ -1,4 +1,4 @@
-import { Box, Button, Heading, Text, useColorMode } from '@chakra-ui/core';
+import { Box, Heading, Text, useColorMode, Link } from '@chakra-ui/core';
 import React from 'react';
 import { NextSeo } from 'next-seo';
 import Main from '~/components/layouts/Main';
@@ -8,11 +8,6 @@ import config from '~/utils/config';
 import { frontMatter as posts } from './blog/**/*.mdx';
 import BlogPost from '~/components/layouts/BlogPost';
 import NextChakraLink from '~/components/helpers/NextChakraLink';
-
-const borderColor = {
-  light: 'gray.900',
-  dark: 'white'
-};
 
 const bgColor = {
   light: 'gray.900',
@@ -27,7 +22,7 @@ const color = {
 const Home = () => {
   const { colorMode } = useColorMode();
 
-  const latestPosts = posts.slice(0, 6).sort((a, b) => parseInt(b.publishedAt, 10) - parseInt(a.publishedAt, 10));
+  const latestPosts = posts.slice(0, 8).sort((a, b) => parseInt(b.publishedAt, 10) - parseInt(a.publishedAt, 10));
 
   return (
     <Main>
@@ -36,7 +31,7 @@ const Home = () => {
         <Heading as="h1" size="2xl">
           Hi, I&apos;am {config.AUTHOR}
         </Heading>
-        <Text as="p" mt={4} mb={6} lineHeight="tall" maxW={700}>
+        <Text as="p" mt={4} mb={6} maxW={700}>
           {config.ABOUT}
         </Text>
         <NextChakraLink
@@ -54,31 +49,55 @@ const Home = () => {
           Selengkapnya
         </NextChakraLink>
       </Box>
-      <Box as="section" id="latest-posts">
-        <Heading as="h1" size="xl" mt={10}>
-          Latest Posts
+      <Box as="section" id="latest-projects" mt={10}>
+        <Heading as="h1" size="xl">
+          Latest Projects
         </Heading>
-        {latestPosts.map(post => {
-          // eslint-disable-next-line
-          const slug = post.__resourcePath.replace('blog\\\\', '').replace('.mdx', '');
+        {config.PROJECTS.map(project => (
+          <Link
+            target="_blank"
+            href={project.url}
+            _hover={{
+              textDecoration: 'none'
+            }}
+            key={project.url}
+            isExternal
+          >
+            <Box mt={4} border="2px" borderColor="gray.300" borderRadius={4} p={5}>
+              <Heading as="h2" size="lg">
+                {project.name}
+              </Heading>
+              <Text as="p" mt={2}>
+                {project.description}
+              </Text>
+            </Box>
+          </Link>
+        ))}
+      </Box>
+      <Box as="section" id="recent-posts" mt={10}>
+        <Heading as="h1" size="xl">
+          Recent Posts
+        </Heading>
+        {posts.length > 0 ? (
+          latestPosts.map(post => {
+            // eslint-disable-next-line
+            const slug = post.__resourcePath.replace('blog\\\\', '').replace('.mdx', '');
 
-          return (
-            <BlogPost
-              title={post.title}
-              description={post.description}
-              publishedAt={post.publishedAt}
-              slug={slug}
-              category={post.category}
-              key={slug}
-              variant="home"
-              mt={4}
-              p={5}
-              borderRadius={4}
-              border="2px"
-              borderColor={borderColor[colorMode]}
-            />
-          );
-        })}
+            return (
+              <BlogPost
+                title={post.title}
+                description={post.description}
+                publishedAt={post.publishedAt}
+                slug={slug}
+                category={post.category}
+                key={slug}
+                mt={4}
+              />
+            );
+          })
+        ) : (
+          <Text as="p">Nothing Hehehe :)</Text>
+        )}
       </Box>
     </Main>
   );

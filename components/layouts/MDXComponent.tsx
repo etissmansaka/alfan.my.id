@@ -1,32 +1,25 @@
-import {
-  Box,
-  Code,
-  Divider,
-  Heading,
-  Link,
-  Text,
-  useColorMode,
-} from "@chakra-ui/core";
-import NextChakraLink from "../helpers/NextChakraLink";
+import React from 'react';
+import { Box, Code, Divider, Heading, Link, Text, useColorMode } from '@chakra-ui/core';
+import NextChakraLink from '../helpers/NextChakraLink';
 
 const borderColor = {
-  light: "gray.400",
-  dark: "gray.200",
+  light: 'gray.400',
+  dark: 'gray.200'
 };
 
 const quoteBackground = {
-  light: "blue.100",
-  dark: "gray.700",
+  light: 'blue.100',
+  dark: 'gray.700'
 };
 
 const quoteBorder = {
-  light: "blue.500",
-  dark: "blue.400",
+  light: 'blue.500',
+  dark: 'blue.400'
 };
 
-const CustomLink = (props) => {
-  const isInternalLink =
-    props.href && (props.href.startsWith("/") || props.href.startsWith("#"));
+/* eslint-disable */
+const CustomLink = props => {
+  const isInternalLink = props.href && (props.href.startsWith('/') || props.href.startsWith('#'));
 
   if (isInternalLink) {
     return (
@@ -38,14 +31,15 @@ const CustomLink = (props) => {
 
   return <Link color="blue.500" isExternal {...props} />;
 };
+/* eslint-enable */
 
-const Hr = (props) => {
+const Hr = props => {
   const { colorMode } = useColorMode();
 
-  return <Divider borderColor={borderColor[colorMode]} w="100%" />;
+  return <Divider borderColor={borderColor[colorMode]} w="100%" {...props} />;
 };
 
-const Quote = (props) => {
+const Quote = props => {
   const { colorMode } = useColorMode();
 
   return (
@@ -65,19 +59,17 @@ const Quote = (props) => {
 };
 
 const MDXComponent = {
-  h1: (props) => <Heading as="h1" size="xl" my={4} {...props} />,
-  h2: (props) => <Heading as="h2" size="lg" my={4} {...props} />,
-  h3: (props) => <Heading as="h3" size="md" my={4} {...props} />,
-  p: (props) => <Text as="p" lineHeight="tall" mt={4} {...props} />,
-  ul: (props) => <Box as="ul" pt={2} pl={4} ml={2} {...props} />,
-  ol: (props) => <Box as="ol" pt={2} pl={4} ml={2} {...props} />,
-  li: (props) => <Box as="li" pb={1} {...props} />,
+  h1: props => <Heading as="h1" size="xl" my={4} {...props} />,
+  h2: props => <Heading as="h2" size="lg" my={4} {...props} />,
+  h3: props => <Heading as="h3" size="md" my={4} {...props} />,
+  p: props => <Text as="p" lineHeight="tall" mt={4} {...props} />,
+  ul: props => <Box as="ul" pt={2} pl={4} ml={2} {...props} />,
+  ol: props => <Box as="ol" pt={2} pl={4} ml={2} {...props} />,
+  li: props => <Box as="li" pb={1} {...props} />,
   a: CustomLink,
-  inlineCode: (props) => (
-    <Code variantColor="blue" fontSize=".85rem" {...props} />
-  ),
+  inlineCode: props => <Code variantColor="blue" fontSize=".85rem" {...props} />,
   hr: Hr,
-  blockquote: Quote,
+  blockquote: Quote
 };
 
 export default MDXComponent;

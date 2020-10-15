@@ -1,10 +1,10 @@
-import { Box, useColorMode } from "@chakra-ui/core";
-import React from "react";
-import config from "~/utils/config";
+import { Box, useColorMode } from '@chakra-ui/core';
+import React from 'react';
+import config from '~/utils/config';
 
 const background = {
-  light: "white",
-  dark: "gray.900",
+  light: 'white',
+  dark: 'gray.900'
 };
 
 const Footer = () => {
