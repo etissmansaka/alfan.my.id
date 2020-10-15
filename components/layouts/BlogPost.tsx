@@ -1,43 +1,69 @@
-import React from "react";
-import { Box, Divider, Heading, Text, useColorMode } from "@chakra-ui/core";
-import NextChakraLink from "../helpers/NextChakraLink";
-import styled from "@emotion/styled";
+import React from 'react';
+import { Box, Flex, Heading, Text, useColorMode } from '@chakra-ui/core';
+import NextChakraLink from '../helpers/NextChakraLink';
 
 const background = {
-  light: "blue.100",
-  dark: "gray.700",
+  light: 'blue.100',
+  dark: 'gray.700'
 };
 
-const ReadMoreLink = styled(NextChakraLink)`
-  :hover {
-    text-decoration: none !important;
-  }
-`;
+const color = {
+  light: 'gray.900',
+  dark: 'teal.200'
+};
 
-const BlogPost = ({ title, description, publishedAt, category, slug }) => {
+const variantAsSize = {
+  home: 'h2',
+  blog: 'h1'
+};
+
+const variantSize = {
+  home: 'lg',
+  blog: 'xl'
+};
+
+const variantColor = {
+  home: {
+    light: 'gray.900',
+    dark: 'white'
+  },
+  blog: ''
+};
+
+const BlogPost = ({ title, description, publishedAt, category, slug, variant, ...props }) => {
   const { colorMode } = useColorMode();
-  console.log(slug);
 
   return (
-    <Box p={5} borderRadius={5} mb={4}>
-      <Heading as="h1" size="xl" mb={4}>
-        {title}
+    <Box mb={4} {...props}>
+      <Heading as={variantAsSize[variant]} size={variantSize[variant]} mb={4} color={variantColor[variant][colorMode]}>
+        <NextChakraLink href={slug}>{title}</NextChakraLink>
       </Heading>
-      <Text as="p" mb={6}>
+      <Text as="p" mb={variant === 'home' ? 0 : 6}>
         {description}
       </Text>
-      <ReadMoreLink
-        href={slug}
-        px={6}
-        py={2}
-        bg={background[colorMode]}
-        borderRadius={4}
-        _hover={{
-          backgroundColor: colorMode === "dark" ? "#4A5568" : "#EBF8FF",
-        }}
-      >
-        Read More
-      </ReadMoreLink>
+      {variant === 'blog' ? (
+        <Flex justifyContent="space-between" alignItems="center">
+          <Text as="p" color={color[colorMode]}>
+            Published at : {publishedAt}
+          </Text>
+          <NextChakraLink
+            href={`/category/${category.toLowerCase()}`}
+            color={color[colorMode]}
+            fontWeight={600}
+            px={4}
+            py={2}
+            borderRadius={4}
+            bg={background[colorMode]}
+            _hover={{
+              textDecoration: 'none'
+            }}
+          >
+            {category}
+          </NextChakraLink>
+        </Flex>
+      ) : (
+        ''
+      )}
     </Box>
   );
 };

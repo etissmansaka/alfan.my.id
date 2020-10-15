@@ -1,16 +1,19 @@
-import React from "react";
-import { Text } from "@chakra-ui/core";
-import { frontMatter as posts } from "./blog/**/*.mdx";
-import BlogPost from "~/components/layouts/BlogPost";
-import Main from "~/components/layouts/Main";
+import React from 'react';
+import { NextSeo } from 'next-seo';
+// eslint-disable-next-line
+// @ts-ignore
+import { frontMatter as posts } from './blog/**/*.mdx';
+import BlogPost from '~/components/layouts/BlogPost';
+import Main from '~/components/layouts/Main';
 
 const Blog = () => {
+  const sortedPosts = posts.sort((a, b) => parseInt(b.publishedAt, 10) - parseInt(a.publishedAt, 10));
   return (
     <Main>
-      {posts.map((post) => {
-        const slug = post.__resourcePath
-          .replace("blog\\\\", "")
-          .replace(".mdx", "");
+      <NextSeo title="Blog" description="Catatan dan keluh kesah keseharian sebagai frontend developer dan siswa yang kurang berguna" />
+      {sortedPosts.map(post => {
+        // eslint-disable-next-line
+        const slug = post.__resourcePath.replace('blog\\\\', '').replace('.mdx', '');
         return (
           <BlogPost
             title={post.title}
@@ -18,6 +21,8 @@ const Blog = () => {
             publishedAt={post.publishedAt}
             category={post.category}
             slug={slug}
+            key={slug}
+            variant="blog"
           />
         );
       })}

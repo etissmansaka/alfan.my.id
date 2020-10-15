@@ -1,11 +1,21 @@
-import React from "react";
-import Link from "next/link";
-import { Link as ChakraLink } from "@chakra-ui/core";
+import React from 'react';
+import Link from 'next/link';
+import { Link as ChakraLink } from '@chakra-ui/core';
 
 const NextChakraLink = ({ href, children, ...chakraProps }) => {
   return (
     <Link href={href} passHref>
-      <ChakraLink {...chakraProps}>{children}</ChakraLink>
+      <ChakraLink
+        {...chakraProps}
+        _focus={{
+          outline: 'none'
+        }}
+        _hover={{
+          textDecoration: 'none'
+        }}
+      >
+        {children}
+      </ChakraLink>
     </Link>
   );
 };
