@@ -1,12 +1,18 @@
 import React from 'react';
 import { NextSeo } from 'next-seo';
 import { Avatar, Button, Flex, Heading, Text, useColorMode } from '@chakra-ui/core';
+import NextChakraLink from '~/components/helpers/NextChakraLink';
 import Main from '~/components/layouts/Main';
 import config from '~/utils/config';
 
 const color = {
   light: 'blue.600',
   dark: 'teal.300'
+};
+
+const background = {
+  light: 'blue.100',
+  dark: 'gray.700'
 };
 
 const MDXLayout = ({ children, frontMatter }) => {
@@ -20,9 +26,20 @@ const MDXLayout = ({ children, frontMatter }) => {
       <NextSeo title={frontMatter.title} canonical={`${config.BASE_URL}/${slug}`} description={frontMatter.description} />
       <Main>
         <Flex direction="column" justifyContent="center" alignItems="center" mb={10}>
-          <Button variant="ghost" borderRadius={4} color={color[colorMode]}>
+          <NextChakraLink
+            href={`/category/${frontMatter.category}`}
+            color={color[colorMode]}
+            fontWeight={600}
+            px={4}
+            py={2}
+            borderRadius={4}
+            bg={background[colorMode]}
+            _hover={{
+              textDecoration: 'none'
+            }}
+          >
             {frontMatter.category}
-          </Button>
+          </NextChakraLink>
           <Heading as="h1" size="2xl" fontWeight={700} textAlign="center" my={4}>
             {frontMatter.title}
           </Heading>

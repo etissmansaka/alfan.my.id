@@ -1,8 +1,7 @@
 {
-  "name": "newblog",
-  "version": "0.1.0",
-  "private": true,
-  "license": "ISC",
+  "name": "alfanjauhari-blog",
+  "version": "1.0.0",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "postbuild": "next-sitemap",
@@ -32,6 +31,7 @@
     "prismjs": "^1.22.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "remark-emoji": "^2.1.0",
     "webp-loader": "^0.6.0"
   },
   "devDependencies": {

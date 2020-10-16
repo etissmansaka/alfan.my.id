@@ -3,6 +3,7 @@ const withImage = require('next-optimized-images');
 const withMdx = require('next-mdx-enhanced');
 const withPwa = require('next-pwa');
 const rehypePrism = require('@mapbox/rehype-prism');
+const remarkEmoji = require('remark-emoji');
 
 module.exports = withPlugins(
   [
@@ -23,7 +24,7 @@ module.exports = withPlugins(
       layoutPath: 'layouts',
       defaultLayout: true,
       fileExtensions: ['mdx'],
-      remarkPlugins: [],
+      remarkPlugins: [remarkEmoji],
       rehypePlugins: [rehypePrism],
       usesSrc: false,
       extendFrontMatter: {
