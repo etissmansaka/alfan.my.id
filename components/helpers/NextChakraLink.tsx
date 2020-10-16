@@ -8,7 +8,8 @@ const NextChakraLink = ({ href, children, ...chakraProps }) => {
       <ChakraLink
         {...chakraProps}
         _focus={{
-          outline: 'none'
+          outline: 'none',
+          boxShadow: 'none'
         }}
         _hover={{
           textDecoration: 'none'

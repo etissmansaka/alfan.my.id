@@ -1,23 +1,9 @@
-import React, { useEffect } from 'react';
-import { Flex, Heading, Text, useToast } from '@chakra-ui/core';
+import React from 'react';
+import { Flex, Heading, Text } from '@chakra-ui/core';
 import { NextSeo } from 'next-seo';
 import NextChakraLink from '~/components/helpers/NextChakraLink';
 
 const NotFoundPage = () => {
-  const toast = useToast();
-
-  useEffect(() => {
-    setTimeout(() => {
-      toast({
-        title: 'Loh kok masih disini?',
-        description: 'Kamu bisa menggunakan tombol go home untuk pergi ke halaman awal loh!',
-        status: 'error',
-        duration: 9000,
-        isClosable: true
-      });
-    }, 5000);
-  }, []);
-
   return (
     <>
       <NextSeo title="404" />

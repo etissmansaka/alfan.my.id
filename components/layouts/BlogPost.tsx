@@ -33,7 +33,7 @@ const BlogPost = ({ title, description, publishedAt, category, slug, ...props })
           {publishedAt}
         </Text>
         <NextChakraLink
-          href={`/category/${category.toLowerCase()}`}
+          href={`/category/${category}`}
           color={color[colorMode]}
           fontWeight={600}
           px={4}

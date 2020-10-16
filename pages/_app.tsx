@@ -4,12 +4,13 @@ import { ColorModeProvider } from '@chakra-ui/core';
 import { DefaultSeo } from 'next-seo';
 import { MDXProvider } from '@mdx-js/react';
 import Head from 'next/head';
+import App from 'next/app';
 import config from '~/utils/config';
 import GlobalStyle from '~/components/layouts/GlobalStyle';
 import MDXComponent from '~/components/layouts/MDXComponent';
 import theme from '~/utils/theme';
 
-const CustomApp = ({ Component, router, ...pageProps }) => {
+const CustomApp = ({ Component, router, pageProps }) => {
   return (
     <ThemeProvider theme={theme}>
       <MDXProvider components={MDXComponent}>

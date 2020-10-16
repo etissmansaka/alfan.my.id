@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Heading, IconButton, List, ListItem, Tooltip, useColorMode } from '@chakra-ui/core';
 import styled from '@emotion/styled';
+import { useRouter } from 'next/router';
 import config from '~/utils/config';
 import NextChakraLink from '../helpers/NextChakraLink';
 
@@ -20,6 +21,7 @@ const Nav = styled(Box)`
 
 const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const { asPath } = useRouter();
 
   return (
     <Nav
@@ -48,9 +50,9 @@ const Header = () => {
               href={menu.path}
               color={color[colorMode]}
               _hover={{
-                color: colorMode === 'dark' ? 'gray.300' : 'gray.500',
-                textDecoration: 'underline'
+                color: colorMode === 'dark' ? 'gray.300' : 'gray.500'
               }}
+              textDecoration={menu.path === asPath ? 'underline' : 'none'}
             >
               {menu.name}
             </NextChakraLink>
