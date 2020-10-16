@@ -18,7 +18,7 @@ const Category = ({ allPosts, slug }) => {
       />
       {allPosts.map(post => {
         // eslint-disable-next-line
-        const slug = post.__resourcePath.replace('blog\\', '/blog/').replace('.mdx', '');
+        const slug = post.__resourcePath.replace(process.env.NODE_ENV === 'development' ? 'blog\\' : 'blog/', '/blog/').replace('.mdx', '');
 
         return (
           <BlogPost
