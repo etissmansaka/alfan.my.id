@@ -1,25 +1,10 @@
 const withPlugins = require('next-compose-plugins');
-const withImage = require('next-optimized-images');
 const withMdx = require('next-mdx-enhanced');
-const withPwa = require('next-pwa');
 const rehypePrism = require('@mapbox/rehype-prism');
 const remarkEmoji = require('remark-emoji');
 
 module.exports = withPlugins(
   [
-    [withImage],
-    [
-      withPwa,
-      {
-        pwa: {
-          dest: 'public',
-          register: true,
-          scope: '/',
-          sw: 'sw.js',
-          disable: process.env.NODE_ENV === 'development'
-        }
-      }
-    ],
     withMdx({
       layoutPath: 'layouts',
       defaultLayout: true,
@@ -33,5 +18,10 @@ module.exports = withPlugins(
       reExportDataFetching: false
     })
   ],
-  { pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'] }
+  {
+    pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
+    images: {
+      domains: ['res.cloudinary.com']
+    }
+  }
 );
