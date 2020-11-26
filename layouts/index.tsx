@@ -1,6 +1,7 @@
 import React from 'react';
 import { NextSeo } from 'next-seo';
-import { Avatar, Button, Flex, Heading, Text, useColorMode } from '@chakra-ui/core';
+import { Avatar, Box, Button, Flex, Heading, Text, useColorMode } from '@chakra-ui/core';
+import { DiscussionEmbed } from 'disqus-react';
 import NextChakraLink from '~/components/helpers/NextChakraLink';
 import Main from '~/components/layouts/Main';
 import config from '~/utils/config';
@@ -53,6 +54,17 @@ const MDXLayout = ({ children, frontMatter }) => {
           </Flex>
         </Flex>
         {children}
+        <Box mt={4}>
+          <DiscussionEmbed
+            shortname="alfan-jauhari"
+            config={{
+              url: `${config.BASE_URL}/${slug}`,
+              identifier: slug,
+              title: slug,
+              language: 'id'
+            }}
+          />
+        </Box>
       </Main>
     </>
   );

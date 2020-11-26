@@ -19,6 +19,7 @@
     "@mdx-js/react": "^1.6.18",
     "@next/mdx": "^9.5.5",
     "babel-plugin-import-glob-array": "^0.2.0",
+    "disqus-react": "^1.0.10",
     "emotion-theming": "^10.0.27",
     "next": "^10.0.0",
     "next-compose-plugins": "^2.2.0",
