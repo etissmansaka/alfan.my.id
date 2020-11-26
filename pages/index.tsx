@@ -19,10 +19,17 @@ const color = {
   dark: 'gray.900'
 };
 
+const convertDate = date => {
+  const newDate = date.split('-');
+  return new Date(newDate[2], newDate[1] - 1, newDate[0]);
+};
+
 const Home = () => {
   const { colorMode } = useColorMode();
 
-  const latestPosts = posts.slice(0, 8).sort((a, b) => parseInt(b.publishedAt, 10) - parseInt(a.publishedAt, 10));
+  const latestPosts = posts
+    .slice(0, 8)
+    .sort((a, b) => Number(new Date(convertDate(b.publishedAt))) - Number(new Date(convertDate(a.publishedAt))));
 
   return (
     <Main>

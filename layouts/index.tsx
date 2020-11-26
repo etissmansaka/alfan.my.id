@@ -1,6 +1,6 @@
 import React from 'react';
 import { NextSeo } from 'next-seo';
-import { Avatar, Box, Button, Flex, Heading, Text, useColorMode } from '@chakra-ui/core';
+import { Avatar, Box, Flex, Heading, Text, useColorMode } from '@chakra-ui/core';
 import { DiscussionEmbed } from 'disqus-react';
 import NextChakraLink from '~/components/helpers/NextChakraLink';
 import Main from '~/components/layouts/Main';

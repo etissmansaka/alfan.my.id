@@ -7,8 +7,13 @@ import { frontMatter as posts } from './blog/**/*.mdx';
 import BlogPost from '~/components/layouts/BlogPost';
 import Main from '~/components/layouts/Main';
 
+const convertDate = date => {
+  const newDate = date.split('-');
+  return new Date(newDate[2], newDate[1] - 1, newDate[0]);
+};
+
 const Blog = () => {
-  const sortedPosts = posts.sort((a, b) => parseInt(b.publishedAt, 10) - parseInt(a.publishedAt, 10));
+  const sortedPosts = posts.sort((a, b) => Number(new Date(convertDate(b.publishedAt))) - Number(new Date(convertDate(a.publishedAt))));
 
   return (
     <Main>
